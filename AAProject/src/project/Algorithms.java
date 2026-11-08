@@ -23,9 +23,44 @@ public class Algorithms {
 	public static List<Integer> greedyNearestNeighbor(Graph graph) {
 		List<Integer> route = new ArrayList<>();
 		// TODO: Always pick the closest unvisited city
-		return route;
-	}
-	
+		int n = graph.size(); // Number of delivery stops
+        boolean[] visited = new boolean[n];
+
+        // Start at node 0 (the depot / first stop)
+        int current = 0;
+        visited[current] = true;
+        route.add(current);
+
+        // Find the nearest unvisited neighbor for every step
+        for (int count = 1; count < n; count++) {
+            int nearest = -1;
+            double minDistance = Double.MAX_VALUE;
+
+            for (int i = 0; i < n; i++) {
+                if (!visited[i]) {
+                    // Fetch distance from current node to node i using the Graph object
+                    double dist = graph.createDistanceMatrix(current, i); 
+                    if (dist < minDistance) {
+                        minDistance = dist;
+                        nearest = i;
+                    }
+                }
+            }
+
+            if (nearest != -1) {
+                visited[nearest] = true;
+                route.add(nearest);
+                current = nearest; // Move to the chosen neighbor
+            }
+        }
+
+        // Optional: Complete the TSP cycle by returning to the start node
+        route.add(route.get(0)); 
+
+        return route;
+    }
+
+
 	// 4. 2-opt Heuristic - Iterative improvement on greedy route[cite: 2]
 	public static List<Integer> twoOpt(Graph graph, List<Integer> initialRoute){
 		List<Integer> optimizedRoute = new ArrayList<>(initialRoute);

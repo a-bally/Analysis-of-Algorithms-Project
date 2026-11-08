@@ -13,32 +13,29 @@ public class Main {
 		
 		// Algorithm Menu
 		System.out.println("\nSelect an Algorithm to Run:");
-		System.out.println("1. Brute Force");
-		System.out.println("2. Dynamic Programming");
-		System.out.println("3. Greedy Nearest Neighbor");
-		System.out.println("4. 2-Opt");
+		System.out.println("1. Brute Force (Small tests only: N <= 10");
+		System.out.println("2. Dynamic Programming (Small/Medium tests: N <= 20");
+		System.out.println("3. Greedy Nearest Neighbor (Small, Medium, Large)");
+		System.out.println("4. 2-Opt (Small, Medium, Large)");
 		System.out.println("Enter your choice (1-4): ");
 		int algorithmChoice = scanner.nextInt();
 		
 		// Parameter / Input Size Selection Menu
 		System.out.println("n/Select Input Size (Number of Delivery Stops - N): ");
-		System.out.println("1. 1,000 stops");
-		System.out.println("2. 10,000 stops");
-		System.out.println("3. 100,000 stops");
-		System.out.println("4. 1,000,000 stops");
-		System.out.println("Enter your choice (1-4): ");
+		System.out.println("1. Small Test (5 to 20 stops)");
+		System.out.println("2. Medium Test (25 to 200 stops)");
+		System.out.println("3. Large Test ( 1,000 to 10,000 stops");
+		System.out.println("Enter your choice (1-3): ");
 		int sizeChoice = scanner.nextInt();
 		
 		// Map size choice
-		int n = 1000;
+		int n = 10;
 		switch (sizeChoice) {
-			case 1: n = 1000; break;
-			case 2; n = 10000; break;
-			case 3; n = 1000000; break;
-			case 4; n = 1000000; break;
+			case 1: n = 10; break;
+			case 2: n = 50; break;
+			case 3: n = 10000; break;
 			default:
-				System.out.println("Invalid selection. Defaulting to 1,000 stops.");
-				n = 1000;
+				n = 100;
 		}
 		
 		System.out.println("\n--------------------------------------------------------");
@@ -53,15 +50,15 @@ public class Main {
 				//
 				break;
 			case 2:
-				System.out.println("Executing Brute Force...");
+				System.out.println("Executing Dynamic Force...");
 				//
 				break;
 			case 3:
-				System.out.println("Executing Brute Force...");
+				System.out.println("Executing Greedy...");
 				//
 				break;
 			case 4:
-				System.out.println("Executing Brute Force...");
+				System.out.println("Executing 2-Opt...");
 				//
 				break;
 			default:
@@ -70,14 +67,20 @@ public class Main {
 				return;
 		}
 		
+		// Validation for exact algorithm choice (large sets)
+		if ((algorithmChoice == 1 || algorithmChoice == 2) && n > 20) {
+			System.out.println("\n[Warning] Brute Force and DP are too slow for N > 20! Switching N to 10 for safety.");
+			n = 10;
+		}
+		
 		// End timing
 		long endTime = System.nanoTime();
 		double durationMs = (endTime - startTime) / 1_000_000.0;
-		double durationSeconds = durationMS / 1000.0;
+		double durationSeconds = durationMs / 1000.0;
 		
 		System.out.println("\n=====================================================================");
 		System.out.println("==========================Benchmark Results============================");
-		System.out.println("Execution Time: " + durationMS + " ms (" + durationSeconds + " seconds)");
+		System.out.println("Execution Time: " + durationMs + " ms (" + durationSeconds + " seconds)");
 		System.out.println("=======================================================================");
 		
 		scanner.close();

@@ -8,6 +8,31 @@ import java.io.BufferedReader;
 
 public class Graph {
 	
+	// Instance variables to store the data internally
+	private List<Location> locations;
+	private double[][] distanceMatrix;
+	
+	// Constructor: Initializes the Graph with loaded data
+	public Graph(List<Location> locations, double[][] distanceMatrix) {
+		this.locations = locations;
+		this.distanceMatrix = distanceMatrix;
+	}
+	
+	// Returns the total delivery stops (N)
+	public int size() {
+		return locations.size();
+	}
+	
+	// Returns the distance between location i and location j
+	public double getDistance(int i, int j) {
+		return distanceMatrix[i][j];
+	}
+	
+	// Getter for locations list
+	public List<Location> getLocations(){
+		return locations;
+	}
+	
 	// Helper class to store coordinates for each location
 	public static class Location{
 		String name;
@@ -38,8 +63,8 @@ public class Graph {
 				String[] values = line.split(",");
 				if (values.length >= 3) {
 					String name = values[0].trim();
-					double latitude = Double.parseDouble(value[1].trim());
-					double longitude = Double.parseDouble(value[2].trim());
+					double latitude = Double.parseDouble(values[1].trim());
+					double longitude = Double.parseDouble(values[2].trim());
 					
 					locations.add(new Location(name, latitude, longitude));
 				}
@@ -52,7 +77,7 @@ public class Graph {
 	
 	// (Method) Build the 2D distance matrix
 	public static double[][] createDistanceMatrix(List<Location> locations) {
-		int n = location.size();
+		int n = locations.size();
 		double[][] distanceMatrix = new double[n][n];
 		
 		for (int i = 0; i < n; i++) {
@@ -65,7 +90,7 @@ public class Graph {
 					
 					double dx = location1.latitude - location2.latitude;
 					double dy = location1.longitude - location2.longitude;
-					distanceMatrix[i][j] = Math.sqrt(dx * dx + dy & dy);
+					distanceMatrix[i][j] = Math.sqrt(dx * dx + dy * dy);
 				}
 			}
 		}
