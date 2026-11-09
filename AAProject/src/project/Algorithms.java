@@ -9,7 +9,7 @@ public class Algorithms {
     // Tries every possible order of stops (always starting at stop 0)
     // and keeps the shortest round trip.
     public static List<Integer> bruteForce(Graph graph) {
-        int n = graph.getNumLocations();
+        int n = graph.size();
         List<Integer> bestRoute = new ArrayList<>();
         if (n == 0) {
             return bestRoute;
@@ -30,7 +30,7 @@ public class Algorithms {
     // Helper for bruteForce: recursively builds every possible order of the remaining stops.
     private static void bruteForceSearch(Graph graph, List<Integer> current, boolean[] visited,
                                          double distanceSoFar, List<Integer> bestRoute, double[] bestDistance) {
-        int n = graph.getNumLocations();
+        int n = graph.size();
 
         // Every stop is in the route: add the trip back to the start and compare
         if (current.size() == n) {
