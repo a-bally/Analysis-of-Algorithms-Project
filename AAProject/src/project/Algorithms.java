@@ -2,6 +2,7 @@ package project;
 
 import java.util.List; 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Algorithms {
 
@@ -58,10 +59,88 @@ public class Algorithms {
         }
     }
 	
-	// 2. Dynamic Programming (Held-Karp) - O(n^2 * 2^n)[cite: 2]
+	// 2. Dynamic Programming (Held-Karp) - O(n^2 * 2^n) time, O(n * 2^n) space
+	// Finds the shortest round trip starting at stop 0. Like brute force,
+	// the returned route lists each stop once; the trip back to 0 is implied.
 	public static List<Integer> dynamicProgramming(Graph graph) {
-		//TODO: Implement memoized subset generation
+		int n = graph.size();
 		List<Integer> bestRoute = new ArrayList<>();
+		if (n == 0) {
+			return bestRoute;
+		}
+		if (n > 20) {
+			throw new IllegalArgumentException("Dynamic programming supports at most 20 stops.");
+		}
+		bestRoute.add(0);
+		if (n == 1) {
+			return bestRoute;
+		}
+
+		// A bit in mask means that stop (bit + 1) has been visited.
+		// Stop 0 is not in the mask because every route starts there.
+		int otherStops = n - 1;
+		int subsetCount = 1 << otherStops;
+		int fullMask = subsetCount - 1;
+
+		// dp[mask, last] = shortest distance from 0, visiting exactly
+		// the stops in mask, and finishing at stop (last + 1).
+		// Flat arrays keep memory usage lower for inputs near 20 stops.
+		double[] dp = new double[subsetCount * otherStops];
+		int[] parent = new int[subsetCount * otherStops];
+		Arrays.fill(dp, Double.POSITIVE_INFINITY);
+		Arrays.fill(parent, -1);
+
+		for (int mask = 1; mask < subsetCount; mask++) {
+			for (int ends = mask; ends != 0; ends &= ends - 1) {
+				int last = Integer.numberOfTrailingZeros(ends);
+				int previousMask = mask & ~(1 << last);
+				int state = mask * otherStops + last;
+
+				if (previousMask == 0) {
+					// First delivery: travel directly from depot 0.
+					dp[state] = graph.getDistance(0, last + 1);
+				} else {
+					// Try every possible previous stop and keep the best one.
+					for (int starts = previousMask; starts != 0; starts &= starts - 1) {
+						int previous = Integer.numberOfTrailingZeros(starts);
+						double distance = dp[previousMask * otherStops + previous]
+								+ graph.getDistance(previous + 1, last + 1);
+						if (distance < dp[state]) {
+							dp[state] = distance;
+							parent[state] = previous;
+						}
+					}
+				}
+			}
+		}
+
+		// Include the last edge back to the depot when choosing the route.
+		double shortestTrip = Double.POSITIVE_INFINITY;
+		int lastStop = -1;
+		for (int last = 0; last < otherStops; last++) {
+			double total = dp[fullMask * otherStops + last]
+					+ graph.getDistance(last + 1, 0);
+			if (total < shortestTrip) {
+				shortestTrip = total;
+				lastStop = last;
+			}
+		}
+		if (lastStop == -1) {
+			throw new IllegalStateException("No complete delivery route was found.");
+		}
+
+		// Follow saved previous stops backwards to rebuild the best route.
+		int[] order = new int[otherStops];
+		int mask = fullMask;
+		for (int position = otherStops - 1; position >= 0; position--) {
+			order[position] = lastStop + 1;
+			int previous = parent[mask * otherStops + lastStop];
+			mask &= ~(1 << lastStop);
+			lastStop = previous;
+		}
+		for (int stop : order) {
+			bestRoute.add(stop);
+		}
 		return bestRoute;
 	}
 	
@@ -85,7 +164,7 @@ public class Algorithms {
             for (int i = 0; i < n; i++) {
                 if (!visited[i]) {
                     // Fetch distance from current node to node i using the Graph object
-                    double dist = graph.createDistanceMatrix(current, i); 
+                    double dist = graph.getDistance(current, i);
                     if (dist < minDistance) {
                         minDistance = dist;
                         nearest = i;
@@ -114,3 +193,4 @@ public class Algorithms {
 		return optimizedRoute;
 	}
 }
+
