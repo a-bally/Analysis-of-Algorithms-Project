@@ -61,16 +61,18 @@ public class Graph {
 				}
 				
 				String[] values = line.split(",");
-				if (values.length >= 3) {
+				if (values.length >= 7) {
 					String name = values[0].trim();
-					double latitude = Double.parseDouble(values[1].trim());
-					double longitude = Double.parseDouble(values[2].trim());
+					double latitude = Double.parseDouble(values[5].trim());
+					double longitude = Double.parseDouble(values[6].trim());
 					
 					locations.add(new Location(name, latitude, longitude));
 				}
 			}
 		} catch (IOException e) {
 			System.out.println("Error reading the CSV file: " + e.getMessage());
+		} catch (NumberFormatException e) {
+				System.out.println("Error parsing latitude/longitude: ");
 		}
 		return locations;
 	}
