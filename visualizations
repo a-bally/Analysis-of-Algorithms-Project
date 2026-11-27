@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo / Visualizations | Amazon Delivery Route Optimization</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Demo / Visualizations</h1>
+        <p>Console execution output and runtime charts</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="problem.html">The Problem</a></li>
+            <li><a href="dataset.html">Dataset</a></li>
+            <li><a href="solution.html">Our Solution</a></li>
+            <li><a href="algorithms.html">Algorithms</a></li>
+            <li><a href="complexity.html">Complexity</a></li>
+            <li><a href="results.html">Results</a></li>
+            <li><a href="visualizations.html">Demo / Visualizations</a></li>
+            <li><a href="technologies.html">Technologies</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="resources.html">Resources</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="panel">
+            <h2>Eclipse Console Output</h2>
+            <p>Shows interactive menu selection, stop count initialization, and millisecond benchmark output:</p>
+            <img class="screenshot" src="assets/console-demo.png" alt="Eclipse console output showing algorithm execution and timing">
+        </div>
+
+        <div class="panel">
+            <h2>Benchmark Charts</h2>
+            <p>Visual comparison of average runtimes across stop tiers:</p>
+            <img class="screenshot" src="assets/runtime-charts.png" alt="Bar charts of average runtimes by algorithm and stop count">
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Project Team. All Rights Reserved.</p>
+        <p><a href="resources.html" style="color: white;">Project Resources</a></p>
+    </footer>
+</body>
+</html>
