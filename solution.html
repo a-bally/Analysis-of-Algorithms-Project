@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Solution | Amazon Delivery Route Optimization</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Our Solution</h1>
+        <p>Java architecture for graph construction, solver execution, and timing</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="problem.html">The Problem</a></li>
+            <li><a href="dataset.html">Dataset</a></li>
+            <li><a href="solution.html">Our Solution</a></li>
+            <li><a href="algorithms.html">Algorithms</a></li>
+            <li><a href="complexity.html">Complexity</a></li>
+            <li><a href="results.html">Results</a></li>
+            <li><a href="visualizations.html">Demo / Visualizations</a></li>
+            <li><a href="technologies.html">Technologies</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="resources.html">Resources</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="panel">
+            <h2>Program Modules</h2>
+            <ul>
+                <li><strong>Graph:</strong> Stores stop coordinates and builds the 2D distance matrix for fast edge lookups.</li>
+                <li><strong>Main:</strong> Prompts for the algorithm and stop tier, initializes the dataset, runs the solver, and records elapsed time via <code>System.nanoTime()</code>.</li>
+                <li><strong>Solvers:</strong> Separate implementations for Brute Force, Dynamic Programming, Greedy Nearest Neighbor, and 2-Opt.</li>
+            </ul>
+        </div>
+
+        <div class="panel">
+            <h2>Main Driver Pseudocode</h2>
+            <pre>ALGORITHM MainBenchmark()
+    READ algorithmChoice, sizeChoice
+    n &lt;- MapSize(sizeChoice)
+    locations &lt;- FirstN(LoadCSV("amazon_delivery.csv"), n)
+    graph &lt;- Graph(locations, CreateDistanceMatrix(locations))
+
+    startTime &lt;- CurrentTimeNano()
+    route &lt;- RunSelectedAlgorithm(algorithmChoice, graph)
+    elapsedMs &lt;- (CurrentTimeNano() - startTime) / 1,000,000
+    PRINT elapsedMs
+END ALGORITHM</pre>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Project Team. All Rights Reserved.</p>
+        <p><a href="resources.html" style="color: white;">Project Resources</a></p>
+    </footer>
+</body>
+</html>
