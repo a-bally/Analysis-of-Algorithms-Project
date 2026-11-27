@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dataset | Amazon Delivery Route Optimization</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Dataset</h1>
+        <p>Stop coordinates and distance matrix setup from amazon_delivery.csv</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="problem.html">The Problem</a></li>
+            <li><a href="dataset.html">Dataset</a></li>
+            <li><a href="solution.html">Our Solution</a></li>
+            <li><a href="algorithms.html">Algorithms</a></li>
+            <li><a href="complexity.html">Complexity</a></li>
+            <li><a href="results.html">Results</a></li>
+            <li><a href="visualizations.html">Demo / Visualizations</a></li>
+            <li><a href="technologies.html">Technologies</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="resources.html">Resources</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="panel">
+            <h2>Data Preparation</h2>
+            <ul>
+                <li>Loads delivery records from <code>amazon_delivery.csv</code>, indexed starting from stop <code>0</code>.</li>
+                <li>Reads stop/order identifiers and latitude/longitude coordinates to build a pairwise distance matrix.</li>
+                <li>Selects the first <em>N</em> stops for each test tier and runs each configuration 7 times to average runtimes in milliseconds.</li>
+            </ul>
+        </div>
+
+        <div class="panel">
+            <h2>Test Tiers</h2>
+            <table>
+                <thead>
+                    <tr><th>Tier</th><th>Stops (N)</th><th>Notes</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Small</td><td>10 / 20</td><td>Exact and heuristic methods evaluated</td></tr>
+                    <tr><td>Medium</td><td>200</td><td>Heuristic scaling test</td></tr>
+                    <tr><td>Large</td><td>1,000</td><td>Heuristic scaling test</td></tr>
+                    <tr><td>X-Large</td><td>10,000</td><td>Large-batch heuristic test</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Project Team. All Rights Reserved.</p>
+        <p><a href="resources.html" style="color: white;">Project Resources</a></p>
+    </footer>
+</body>
+</html>
