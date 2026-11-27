@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithms | Amazon Delivery Route Optimization</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Algorithms</h1>
+        <p>Exact solvers and heuristic route-building / improvement methods</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="problem.html">The Problem</a></li>
+            <li><a href="dataset.html">Dataset</a></li>
+            <li><a href="solution.html">Our Solution</a></li>
+            <li><a href="algorithms.html">Algorithms</a></li>
+            <li><a href="complexity.html">Complexity</a></li>
+            <li><a href="results.html">Results</a></li>
+            <li><a href="visualizations.html">Demo / Visualizations</a></li>
+            <li><a href="technologies.html">Technologies</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="resources.html">Resources</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="panel">
+            <h2>Exact Algorithms</h2>
+            <ul>
+                <li><strong>Brute Force:</strong> Evaluates permutations of stops to guarantee the minimum-distance tour.</li>
+                <li><strong>Dynamic Programming:</strong> Uses memoized subproblems (bitmask states) to find an exact tour without re-evaluating identical states.</li>
+            </ul>
+        </div>
+
+        <div class="panel">
+            <h2>Heuristic &amp; Local Search Algorithms</h2>
+            <ul>
+                <li><strong>Greedy Nearest Neighbor:</strong> Starts at stop <code>0</code> and repeatedly picks the closest unvisited stop before returning to the start.</li>
+                <li><strong>2-Opt:</strong> Starts from an initial route (such as Greedy) and swaps pairs of edges when doing so shortens the total tour.</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Project Team. All Rights Reserved.</p>
+        <p><a href="resources.html" style="color: white;">Project Resources</a></p>
+    </footer>
+</body>
+</html>
