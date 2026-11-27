@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results | Amazon Delivery Route Optimization</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Results</h1>
+        <p>7-trial average execution times in milliseconds across stop tiers</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="problem.html">The Problem</a></li>
+            <li><a href="dataset.html">Dataset</a></li>
+            <li><a href="solution.html">Our Solution</a></li>
+            <li><a href="algorithms.html">Algorithms</a></li>
+            <li><a href="complexity.html">Complexity</a></li>
+            <li><a href="results.html">Results</a></li>
+            <li><a href="visualizations.html">Demo / Visualizations</a></li>
+            <li><a href="technologies.html">Technologies</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="resources.html">Resources</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="panel">
+            <h2>Average Runtimes (ms)</h2>
+            <table>
+                <thead>
+                    <tr><th>Algorithm</th><th>Small</th><th>Medium (200)</th><th>Large (1,000)</th><th>X-Large (10,000)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Brute Force</td><td>55.96 ms</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+                    <tr><td>Dynamic Programming</td><td>2.69 ms</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+                    <tr><td>Greedy Nearest Neighbor</td><td>3.66 ms</td><td>3.66 ms</td><td>19.83 ms</td><td>320.89 ms</td></tr>
+                    <tr><td>2-Opt</td><td>1.40 ms</td><td>4.48 ms</td><td>20.04 ms</td><td>341.97 ms</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panel">
+            <h2>Summary</h2>
+            <ul>
+                <li>Brute Force and Dynamic Programming were only practical on small stop counts.</li>
+                <li>Greedy and 2-Opt completed all tested tiers up to 10,000 stops.</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Project Team. All Rights Reserved.</p>
+        <p><a href="resources.html" style="color: white;">Project Resources</a></p>
+    </footer>
+</body>
+</html>
